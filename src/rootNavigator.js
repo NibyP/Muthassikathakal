@@ -6,18 +6,30 @@ import HomeScreen  from './screens/HomeScreen';
 import StoriesScreen  from './screens/StoriesScreen';
 import StoryScreen  from './screens/StoryScreen';
 import  AppMainHeader  from './components/AppHeader';
+import  Menu  from './components/SideMenu';
+import {navigationRef} from './rootNavigationRef';
 
 
-  
+
 const RootNavigator = ({theme}) => {
-    
+    //console.log('root');console.log(navigation);
     const Stack = createStackNavigator();
     return (
-            <NavigationContainer theme={theme}>
+            <NavigationContainer theme={theme}  ref={navigationRef}>
                 <Stack.Navigator initialRouteName="Home"
-                    screenOptions={{ 
-                        header:  (props) => <AppMainHeader {...props}  />,
-                    }}
+                    // screenOptions={{ 
+                    //     header:  (props) => <AppMainHeader {...props}  />,
+                    // }}
+                    screenOptions={({ route, navigation }) => ({
+                        header:  (props) => <AppMainHeader {...props}   {...route}  {...navigation}/>,
+                        // headerTitleAlign: 'center',
+                        // headerTitle: () => <SpreeLogo />,
+                        // headerRight: (props) => <MaterialIcons style={{
+                        //   marginHorizontal: 10,
+                        // }}
+                        // onPress={() => console.log(route, navigation)}
+                        // name="clear" size={28} color="black" />
+                      })}
                 >
                     <Stack.Screen
                         name="Home"
@@ -32,6 +44,12 @@ const RootNavigator = ({theme}) => {
                     <Stack.Screen
                         name="Story"
                         component={StoryScreen}
+                    />
+                    <Stack.Screen
+                        name="Menu"
+                        component={Menu}
+                        options={{ headerTitle: 'Muthassikathakal' }}
+
                     />
                 </Stack.Navigator>
                 

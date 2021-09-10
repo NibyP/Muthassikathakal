@@ -48,36 +48,49 @@ const SearchbarCommon = ({ navigation, previous }) => {
   const customstyles = StyleSheet.create({
     
     searchinput:{
-        height: 50,
-        marginTop: 2,
-        width: '100%',
-        borderWidth: 1,
-        
-        justifyContent: 'center',
-        backgroundColor: colors.background,
         borderColor: colors.background,
-    }
+        backgroundColor:'#fcfcfd',
+        color:'#58ceb2',
+    },
+    container:{
+      alignItems:'center',
+      marginHorizontal:20,
+      marginVertical:10,
+      borderRadius:50
+    },
+    icon:{
+      color:'#58ceb2',
+      fontSize:20,
+      justifyContent:'center',
+      paddingLeft:10,
+
+    },
   });
 
   return (
-    <View style={{justifyContent:'center', }}>
-      
-        {/*<Searchbar
-          placeholder="Search"
+    <View style={{}}>
+      {/* <Searchbar
+        placeholder="Search"
+        onChangeText={onChangeSearch}
+        value={searchQuery}
+        style={{alignSelf:'center',}}
+      /> */}
+        <Searchbar
+          placeholder="Find stories you like..."
           onChangeText={onChangeSearch}
           value={searchQuery}
           inputStyle={customstyles.searchinput}
-          icon={()=><Icon name="search" size={30} color="#900" style={{justifyContent:'center', paddingLeft:10}} />}
+          style={customstyles.container}
+          icon={()=><Icon name="search" style={customstyles.icon} />}
         />
-        <Animated.View style={anims.search}>*/}
-            <TextInput
-              autoFocus
+        {/*<Animated.View style={anims.search}>*/}
+            {/* <TextInput
               value={searchQuery}
               autoCorrect={false}
               onChangeText={(text) => setSearchQuery(text)}
               placeholder="Find your next book..."
               style={customstyles.searchInput}
-            />
+            /> */}
           {/*<Pressable onPress={goBack}>
             <Text bold style={customstyles.saveButton}>Done</Text>
           </Pressable>

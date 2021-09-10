@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-
 import {
   StyleSheet,
   Text,
@@ -10,7 +9,9 @@ import {
 } from 'react-native';
 import  SearchbarCommon  from '../components/SearchBar';
 
+
 const HomeScreen = ({navigation, route}) => { 
+    console.log('home');console.log(navigation);
     return (
         <View >
             <SearchbarCommon />

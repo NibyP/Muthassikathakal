@@ -16,21 +16,12 @@ import { toggleSideMenu,updateSideMenuState,onMenuItemSelected } from '../action
 
 
 
- const AppMainHeader = (props) => {
+ const TopStories = (props) => {
   //console.log('Props');console.log(props.navigation);
   const { navigation } = props;
   const theme = useTheme();
   const { colors } = theme;//console.log('be happy niby');console.log(navigation.canGoBack);
   
-  const [searchQuery, setSearchQuery] = useState('');
-  const [active, setActive] = React.useState('');
-
-  const _toggleDrawer = () => {props.toggleMenu();}
-
-  const _handleSearch = () => console.log('Searching');
-
-  const _handleMore = () => console.log('Shown more');
-
 
 
   return (
@@ -40,10 +31,10 @@ import { toggleSideMenu,updateSideMenuState,onMenuItemSelected } from '../action
           barStyle="light-content"
           hidden={false}
       />
-      <Appbar.Header style={{ backgroundColor: colors.background }}>
-        {navigation.canGoBack() ? <Appbar.BackAction onPress={()=> navigation.goBack(null)} /> : <Appbar.Action icon="menu" onPress={()=>{_toggleDrawer()}}  style={{color:'red'}} />}
-        <Appbar.Content title="Muthassikathakal" subtitle="" titleStyle={{ color: colors.primary, justifyContent: 'center', paddingLeft: 25, fontSize:25, fontWeight:'bold' }} onPress={ () =>{navigation.navigate('Home');}}/>
-        {/* <Appbar.Action icon="magnify" onPress={_handleSearch} /> */}
+      <Appbar.Header>
+        {navigation.canGoBack() ? <Appbar.BackAction onPress={()=> navigation.goBack(null)} /> : <Appbar.Action icon="menu" onPress={()=>{_toggleDrawer()}}  style={{color:'white'}}/>}
+        <Appbar.Content title="Muthassikathakal" subtitle="" titleStyle={{ color: colors.text, justifyContent: 'center', paddingLeft: 25 }} onPress={ () =>{navigation.navigate('Home');}}/>
+        <Appbar.Action icon="magnify" onPress={_handleSearch} />
         
       </Appbar.Header>
       
@@ -67,7 +58,7 @@ const mapDispatchToProps = (dispatch) =>{
 export default compose(
   connect(mapStateToProps,mapDispatchToProps),
   withTheme
-)(AppMainHeader);
+)(TopStories);
 
 
 //export default withTheme(AppMainHeader);
