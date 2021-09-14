@@ -42,7 +42,7 @@ import { toggleSideMenu,updateSideMenuState,onMenuItemSelected } from '../action
       />
       <Appbar.Header style={{ backgroundColor: colors.background }}>
         {navigation.canGoBack() ? <Appbar.BackAction onPress={()=> navigation.goBack(null)} /> : <Appbar.Action icon="menu" onPress={()=>{_toggleDrawer()}}  style={{color:'red'}} />}
-        <Appbar.Content title="Muthassikathakal" subtitle="" titleStyle={{ color: colors.primary, justifyContent: 'center', paddingLeft: 25, fontSize:25, fontWeight:'bold' }} onPress={ () =>{navigation.navigate('Home');}}/>
+        <Appbar.Content title="Muthassikathakal" subtitle="" titleStyle={{ color: colors.primary, justifyContent: 'center', fontSize:30,  fontFamily:'playoutdemo' }} onPress={ () =>{navigation.navigate('Home');}}/>
         {/* <Appbar.Action icon="magnify" onPress={_handleSearch} /> */}
         
       </Appbar.Header>

@@ -21,11 +21,11 @@ const SearchbarCommon = ({ navigation, previous }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const _showDrawer = () => console.log('Show Drawer');
 
-  const _handleSearch = () => console.log('Searching');
+  const _handleSearch = () => {console.log('Searching');}
 
   const _handleMore = () => console.log('Shown more');
 
-  const onChangeSearch = () => console.log('Search');
+  const onChangeSearch = () => {}
   // animated styles
   // const anims = {
   //   search: useAnimatedStyle(() => ({
@@ -51,16 +51,20 @@ const SearchbarCommon = ({ navigation, previous }) => {
         borderColor: colors.background,
         backgroundColor:'#fcfcfd',
         color:'#58ceb2',
+        fontSize:14,
+        //height:25
+        textAlignVertical:'center'
     },
     container:{
       alignItems:'center',
       marginHorizontal:20,
       marginVertical:10,
-      borderRadius:50
+      borderRadius:50,
+      height:40
     },
     icon:{
       color:'#58ceb2',
-      fontSize:20,
+      fontSize:16,
       justifyContent:'center',
       paddingLeft:10,
 
@@ -77,8 +81,8 @@ const SearchbarCommon = ({ navigation, previous }) => {
       /> */}
         <Searchbar
           placeholder="Find stories you like..."
-          onChangeText={onChangeSearch}
-          value={searchQuery}
+          //onChangeText={onChangeSearch}
+          //value={searchQuery}
           inputStyle={customstyles.searchinput}
           style={customstyles.container}
           icon={()=><Icon name="search" style={customstyles.icon} />}

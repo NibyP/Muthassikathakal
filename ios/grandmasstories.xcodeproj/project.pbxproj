@@ -28,6 +28,10 @@
 		49654BB5D7A14FFABF972CE9 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F0CBF406C31407ABB34261C /* Octicons.ttf */; };
 		1F694896F0B1499D8BF99FE7 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9DAD626C2A5649D7ABA587B0 /* SimpleLineIcons.ttf */; };
 		87042B621F434073B349AAA5 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37650BC0F9894C499C108CAB /* Zocial.ttf */; };
+		2203DAC92C244690AFFEF452 /* RainbowColorsRegular-yaq2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17F54E339C354220A99027D3 /* RainbowColorsRegular-yaq2.ttf */; };
+		4D06E4DD20714C49B3FD9F8F /* RainbowColors.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B90BB27A8FF749DD83F42E37 /* RainbowColors.ttf */; };
+		B984F7CAEC4C4BC49BE7B89C /* rainbowcolors.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8495536EC8D04296AB4052F3 /* rainbowcolors.ttf */; };
+		CEF8FBD3824E42799A270C3B /* playoutdemo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 444790522E0547FCA4302533 /* playoutdemo.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +72,10 @@
 		9F0CBF406C31407ABB34261C /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		9DAD626C2A5649D7ABA587B0 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		37650BC0F9894C499C108CAB /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		17F54E339C354220A99027D3 /* RainbowColorsRegular-yaq2.ttf */ = {isa = PBXFileReference; name = "RainbowColorsRegular-yaq2.ttf"; path = "../assets/fonts/RainbowColorsRegular-yaq2.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B90BB27A8FF749DD83F42E37 /* RainbowColors.ttf */ = {isa = PBXFileReference; name = "RainbowColors.ttf"; path = "../assets/fonts/RainbowColors.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8495536EC8D04296AB4052F3 /* rainbowcolors.ttf */ = {isa = PBXFileReference; name = "rainbowcolors.ttf"; path = "../assets/fonts/rainbowcolors.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		444790522E0547FCA4302533 /* playoutdemo.ttf */ = {isa = PBXFileReference; name = "playoutdemo.ttf"; path = "../assets/fonts/playoutdemo.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +184,10 @@
 				9F0CBF406C31407ABB34261C /* Octicons.ttf */,
 				9DAD626C2A5649D7ABA587B0 /* SimpleLineIcons.ttf */,
 				37650BC0F9894C499C108CAB /* Zocial.ttf */,
+				17F54E339C354220A99027D3 /* RainbowColorsRegular-yaq2.ttf */,
+				B90BB27A8FF749DD83F42E37 /* RainbowColors.ttf */,
+				8495536EC8D04296AB4052F3 /* rainbowcolors.ttf */,
+				444790522E0547FCA4302533 /* playoutdemo.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -287,6 +299,10 @@
 				49654BB5D7A14FFABF972CE9 /* Octicons.ttf in Resources */,
 				1F694896F0B1499D8BF99FE7 /* SimpleLineIcons.ttf in Resources */,
 				87042B621F434073B349AAA5 /* Zocial.ttf in Resources */,
+				2203DAC92C244690AFFEF452 /* RainbowColorsRegular-yaq2.ttf in Resources */,
+				4D06E4DD20714C49B3FD9F8F /* RainbowColors.ttf in Resources */,
+				B984F7CAEC4C4BC49BE7B89C /* rainbowcolors.ttf in Resources */,
+				CEF8FBD3824E42799A270C3B /* playoutdemo.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
