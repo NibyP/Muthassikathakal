@@ -33,14 +33,14 @@ const MenuScreen = (props) => {
                     <Icon name="close" style={styles.close}/>
                 </TouchableOpacity>
             </View>
-            <View style={styles.itemview}>
+            {/* <View style={styles.itemview}>
                 <Text
                 style={styles.item}
                 onPress={ () =>{props.toggleMenu(); RootNavigation.navigate('Home');}}
                 >
                 Home
                 </Text>
-            </View>
+            </View> */}
             <View style={styles.itemview}>
                 <Text
                 style={styles.item}

@@ -2,21 +2,24 @@ import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen  from './screens/HomeScreen';
+// import HomeScreen  from './screens/HomeScreen';
 import StoriesScreen  from './screens/StoriesScreen';
 import StoryScreen  from './screens/StoryScreen';
 import  AppMainHeader  from './components/AppHeader';
 import  Menu  from './components/SideMenu';
 import {navigationRef} from './rootNavigationRef';
+import {HomeScreen}  from './screens/HomeScreen';
 
 
 
-const RootNavigator = ({theme}) => {
+const RootNavigator = ({theme, initialScreen}) => {
     //console.log('root');console.log(navigation);
     const Stack = createStackNavigator();
     return (
-            <NavigationContainer theme={theme}  ref={navigationRef}>
-                <Stack.Navigator initialRouteName="Home"
+            // <NavigationContainer theme={theme}  ref={navigationRef}>
+                <Stack.Navigator 
+                   
+                    initialRouteName={initialScreen}
                     // screenOptions={{ 
                     //     header:  (props) => <AppMainHeader {...props}  />,
                     // }}
@@ -32,11 +35,12 @@ const RootNavigator = ({theme}) => {
                       })}
                 >
                     <Stack.Screen
-                        name="Home"
+                        name="Homes"
                         component={HomeScreen}
                         options={{ headerTitle: 'Muthassikathakal' }}
 
-                    />{/*options={{title:'Welcome to the world of Stories!!'}}*/}
+                    />
+                    {/*options={{title:'Welcome to the world of Stories!!'}}*/}
                     <Stack.Screen
                         name="Stories"
                         component={StoriesScreen}
@@ -51,9 +55,10 @@ const RootNavigator = ({theme}) => {
                         options={{ headerTitle: 'Muthassikathakal' }}
 
                     />
+                    
                 </Stack.Navigator>
                 
-            </NavigationContainer>
+            // </NavigationContainer>
              
     );
 }

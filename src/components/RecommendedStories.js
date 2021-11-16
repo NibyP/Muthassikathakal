@@ -19,24 +19,19 @@ import { connect } from 'react-redux';
 import { toggleSideMenu,updateSideMenuState,onMenuItemSelected } from '../actions/sidemenu';
 import * as RootNavigation from '../rootNavigationRef';
 import { useNavigation } from '@react-navigation/native';
-import AppMainHeader  from '../components/AppHeader';
-import { createStackNavigator } from '@react-navigation/stack';
-import StoryScreen  from './StoryScreen';
 
 const window = Dimensions.get('window');
 const deviceWidth = Dimensions.get('window').width;
 
 // { categoryID, storyListDynamic }
 
-const StoriesScreen = ({navigation, route}) => {
-  //const navigation = navigation;
-  //console.log(navigation);
+const RecommendedStories = () => {
+  const navigation = useNavigation();
   const [isLoading, setLoading] = useState(true);
   const [storyListDynamic, updatestoryList] = useState([]);
-  const { category, top_story,  } = route.params;
   
   useEffect(() => {
-    fetch('https://techieexplorer.com/demo/muthassikathakal/public/api/v1/stories?language=English&per_page=-1', {
+    fetch('https://techieexplorer.com/demo/muthassikathakal/public/api/v1/stories?language=English&per_page=-1&recommended=yes', {
             method: 'GET',
             headers: {
               Accept: 'application/json',
@@ -52,12 +47,10 @@ const StoriesScreen = ({navigation, route}) => {
  
   return(
       <View style={styles.storyContainer} >
-          
-            {/* <AppMainHeader {...props}   {...props.route}  {...navigation}/> */}
-              {/* <View style={styles.titleContainer}>
-                    <Text  style={styles.titleText}>Latest Stories</Text>
-                    
-              </View> */}
+              <View style={styles.titleContainer}>
+                    <Text  style={styles.titleText}>Recommended Stories</Text>
+                    <TouchableOpacity   style={styles.viewMore} onPress={ () => navigation.navigate('Stories', { recommended:'yes' })}><Text>View All</Text></TouchableOpacity>
+              </View>
               <FlatList
                   contentContainerStyle={styles.storySlider}
                   horizontal={false}
@@ -72,7 +65,7 @@ const StoriesScreen = ({navigation, route}) => {
                                           style={styles.storyImage}
                                           source={{uri:item.story_image+"?time=" + new Date()}}
                                         />
-                      <Text style={{color:'grey',textAlign:'center',fontSize:13,fontWeight:'bold',width:150}}>{item.story_title}</Text>
+                      <Text style={{color:'grey',textAlign:'center',fontSize:13,fontWeight:'bold',width:160}}>{item.story_title}</Text>
                   </TouchableOpacity></View>}
                >
 
@@ -82,36 +75,7 @@ const StoriesScreen = ({navigation, route}) => {
       </View>
   );
 }
-const StoriesStackScreen = ({navigation, route}) => { 
-  const Stack = createStackNavigator();
-  return (
-          // <RootNavigator  theme={theme} initialScreen="HomeScreen"/>
-              <Stack.Navigator 
-                 
-                 initialRouteName="StoriesScreen"
-                 
-                 screenOptions={({ route, navigation }) => ({
-                     header:  (props) => <AppMainHeader {...props}   {...route}  {...navigation}/>,
-                     
-                   })}
-             >
-                
-                 <Stack.Screen
-                     name="StoriesScreen"
-                     component={StoriesScreen}
-                     options={{ headerTitle: 'Stories' }}
-                     {...navigation}
-                     {...route}
-                 />
-                 <Stack.Screen
-                     name="Story"
-                     component={StoryScreen}
-                 />
-                 
-                 
-             </Stack.Navigator>
-  );
-}
+
 
 const mapStateToProps = (state) =>{
   //console.log(state);
@@ -130,16 +94,16 @@ const mapDispatchToProps = (dispatch) =>{
 export default  compose(
   connect(mapStateToProps,mapDispatchToProps),
   withTheme,
-)(StoriesStackScreen);
+)(RecommendedStories);
 
 const styles = StyleSheet.create({
   
   storyContainer:{
-    backgroundColor:'#ebf3f3',
+    //backgroundColor:'#a5c2fb',
     flexDirection:'column',
     flex:1,
     flexWrap:'wrap',
-    paddingBottom: 40,
+    paddingBottom: 110,
     alignItems:'center',
     justifyContent:'center'
   },
@@ -151,7 +115,7 @@ const styles = StyleSheet.create({
   storyBox:{
       marginLeft: 5,
       marginVertical:10,
-      
+
   },
   storyBtn:{
       paddingHorizontal:10,
@@ -171,7 +135,6 @@ const styles = StyleSheet.create({
       color:'gray',
       borderWidth: 2,
       borderColor:'#9658f4',
-     
   },
   titleContainer:{
     flexDirection:'row',

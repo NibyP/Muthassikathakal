@@ -4,22 +4,23 @@ import {  DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { changeLanguage } from './src/actions/language';
 import { updateStoryList,updateStoryDetails } from './src/actions/story';
-import RootNavigator from './src/rootNavigator';
+// import RootNavigator from './src/rootNavigator';
 import theme from './src/theme';
-import SideMenu from 'react-native-side-menu';
+// import SideMenu from 'react-native-side-menu';
 import MenuScreen from './src/components/SideMenu';
-import { NavigationContainer } from '@react-navigation/native';
+// import { NavigationContainer } from '@react-navigation/native';
+import  BottomBar  from './src/components/BottomBar';
+import  BottomTab  from './src/components/BottomTab';
 
 
 const App = (props) => {
-  //console.log(navigation);
-  const menu = <MenuScreen navigator={navigator} />;
+  console.log(props.navigation);
   return (
-    <SideMenu menu={menu} menuPosition="left">
       <PaperProvider theme={theme}>
-          <RootNavigator  theme={theme}/>
+          {/* <RootNavigator  theme={theme}/> */}
+          {/* <BottomBar   theme={theme}/> */}
+          <BottomTab   theme={theme}/>
       </PaperProvider>
-    </SideMenu>
   );
 }
 

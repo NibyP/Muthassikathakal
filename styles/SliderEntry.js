@@ -8,7 +8,7 @@ function wp (percentage) {
     return Math.round(value);
 }
 
-const slideHeight = viewportHeight * 0.52;//viewportHeight * 0.36;
+const slideHeight = viewportHeight * 0.46;//viewportHeight * 0.36;
 const slideWidth = wp(43);//75
 const itemHorizontalMargin = wp(2);//2
 
@@ -29,18 +29,18 @@ export default  styles = StyleSheet.create({
         width: itemWidth,
         height: slideHeight,
         paddingHorizontal: itemHorizontalMargin,
-        paddingBottom: 18 // needed for shadow
+        paddingBottom: 5 // needed for shadow
     },
     shadow: {
         position: 'absolute',
         top: 0,
         left: itemHorizontalMargin,
         right: itemHorizontalMargin,
-        bottom: 18,
+        bottom: 5,
         shadowColor: colors.black,
         shadowOpacity: 0.25,
         shadowOffset: { width: 0, height: 10 },
-        shadowRadius: 10,
+        shadowRadius: 5,
         borderRadius: entryBorderRadius
     },
     imageContainer: {
@@ -80,8 +80,8 @@ export default  styles = StyleSheet.create({
         justifyContent: 'center',
         marginVertical:10,
         paddingTop: 20 - entryBorderRadius,
-        paddingBottom: 20,
-        paddingHorizontal: 16,
+        //paddingBottom: 20,
+        paddingHorizontal: 2,
         //backgroundColor: 'white',
         borderBottomLeftRadius: entryBorderRadius,
         borderBottomRightRadius: entryBorderRadius
@@ -131,10 +131,10 @@ export default  styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     title: {
-        paddingHorizontal: 30,
+        paddingHorizontal: 3,
         backgroundColor: 'transparent',
         color: 'black',//rgba(255, 255, 255, 0.9)
-        fontSize: 15,
+        fontSize: 13,
         fontWeight: 'bold',
         textAlign: 'center'
     },
@@ -151,11 +151,11 @@ export default  styles = StyleSheet.create({
         textAlign: 'center'
     },
     slider: {
-        marginTop: 15,
+        marginTop: 10,
         overflow: 'visible' // for custom animations
     },
     sliderContentContainer: {
-        paddingVertical: 10 // for custom animation
+        paddingVertical: 5 // for custom animation
     },
     paginationContainer: {
         paddingVertical: 8

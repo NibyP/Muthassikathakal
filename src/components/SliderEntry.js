@@ -14,11 +14,11 @@ export default class SliderEntry extends Component {
     };
 
     get image () {
-        const { data: { illustration }, parallax, parallaxProps, even } = this.props;
-
+        const { data: { story_image }, parallax, parallaxProps, even } = this.props;
+        //console.log(this.props);
         return parallax ? (
             <ParallaxImage
-              source={{ uri: illustration }}
+              source={{ uri: story_image }}
               containerStyle={[styles.imageContainer, even ? styles.imageContainerEven : {}]}
               style={styles.image}
               parallaxFactor={0.35}
@@ -26,23 +26,24 @@ export default class SliderEntry extends Component {
               spinnerColor={even ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.25)'}
               {...parallaxProps}
             />
+            
         ) : (
             <Image
-              source={{ uri: illustration }}
+              source={{ uri: story_image }}
               style={styles.image}
             />
         );
     }
 
     render () {
-        const { data: { title, subtitle }, even } = this.props;
-
-        const uppercaseTitle = title ? (
+        const { data: { story_title, slug }, even, navigation } = this.props;
+        //console.log(navigation);
+        const uppercaseTitle = story_title ? (
             <Text
               style={[styles.title, even ? styles.titleEven : {}]}
               numberOfLines={2}
             >
-                { title.toUpperCase() }
+                { story_title.toUpperCase() }
             </Text>
         ) : false;
 
@@ -50,7 +51,7 @@ export default class SliderEntry extends Component {
             <TouchableOpacity
               activeOpacity={1}
               style={styles.slideInnerContainer}
-              onPress={() => { alert(`You've clicked '${title}'`); }}
+              onPress={() => { navigation.navigate('Story', { storyslug:slug, storydetails:this.props.data }) ; }}
               >
                 <View style={styles.shadow} />
                 <View style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}>
@@ -59,12 +60,12 @@ export default class SliderEntry extends Component {
                 </View>
                 <View style={[styles.textContainer, even ? styles.textContainerEven : {}]}>
                     { uppercaseTitle }
-                    <Text
+                    {/* <Text
                       style={[styles.subtitle, even ? styles.subtitleEven : {}]}
                       numberOfLines={2}
                     >
-                        { subtitle }
-                    </Text>
+                        { slug }
+                    </Text> */}
                 </View>
             </TouchableOpacity>
         );

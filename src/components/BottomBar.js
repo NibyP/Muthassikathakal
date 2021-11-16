@@ -1,13 +1,32 @@
-import React, { useState } from 'react';
-import { StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { StatusBar, StyleSheet, TouchableOpacity, View, Text, Image } from 'react-native';
 import { CurvedBottomBar } from 'react-native-curved-bottom-bar';
+import { createStackNavigator } from '@react-navigation/stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import HomeStackScreen  from '../screens/HomeScreen';
+import StoriesScreen  from '../screens/StoriesScreen';
+import FavouritesScreen  from '../screens/FavouritesScreen';
+import CategoriesScreen  from '../screens/CategoriesScreen';
+//import StoryScreen  from '../screens/StoryScreen';
+
 
 StatusBar.setBarStyle('dark-content');
 
+// const HomeStack = createStackNavigator();
+// function HomeStackScreen() {
+//  return (
+//    <HomeStack.Navigator>
+//     <HomeStack.Screen name="Home" component={HomeScreen} />             
+//     <HomeStack.Screen name="Details" component={DetailsScreen} />
+//    </HomeStack.Navigator>
+//   );
+// }
 const BottomBar = props => {
-    const [type, setType] = useState('down');
 
+    const { navigation,route } = props;
+    const [type, setType] = useState('up');
+    const ref = useRef();
+//console.log(ref);
     const onClickButton = () => {
         if (type === 'down') {
             setType('down');
@@ -22,40 +41,48 @@ const BottomBar = props => {
         let icon = '';
 
         switch (routeName) {
-        case 'title1':
-            icon = 'ios-home-outline';
-            break;
-        case 'title2':
-            icon = 'apps-outline';
-            break;
-        case 'title3':
-            icon = 'bar-chart-outline';
-            break;
-        case 'title4':
-            icon = 'person-outline';
-            break;
+            case 'Home':
+                icon = 'ios-home-sharp';
+                break;
+            case 'Favourites':
+                icon = 'heart';
+                break;
+            case 'Stories':
+                icon = 'book-sharp';
+                break;
+            case 'Categories':
+                icon = 'apps-sharp';
+                break;    
         }
 
         return (
-            <Ionicons name={icon} size={23} color={routeName === selectTab ? '#FF3030' : 'gray'} />
+            <View style={{
+                alignItems: 'center'
+            }}>
+            <Ionicons name={icon} size={23} color={routeName === selectTab ? '#58ceb2' : 'gray'} />
+            <Text style={{ position: 'absolute', color: routeName === selectTab ? '#58ceb2' : 'gray', marginTop:25, fontSize:12 }}>{routeName}</Text>
+            </View>
         );
     };
 
     return (
         <View style={styles.container}>
             <CurvedBottomBar.Navigator
+                ref={ref}
                 style={[type === 'down' && {backgroundColor: '#F5F5F5'}]}
                 type={type}
-                height={60}
+                height={65}
                 circleWidth={55}
                 bgColor="white"
                 borderTopLeftRight={true}
-                initialRouteName="title1"
+                lazy={true}
+                initialRouteName="Home"
                 renderCircle={() => (
                     <TouchableOpacity
                         style={[type === 'down' ? styles.btnCircle : styles.btnCircleUp]} onPress={onClickButton}
                     >
-                        <Ionicons name="chatbubbles-outline" size={23} />
+                        {/* <Ionicons name="chatbubbles-outline" size={23} /> */}
+                        <Image source={require('../../assets/images/logo.png')} style={{ width: 58, height: 58, borderRadius:58 }}/>
                     </TouchableOpacity>
                 )}
                 tabBar={({ routeName, selectTab, navigation }) => {
@@ -67,27 +94,35 @@ const BottomBar = props => {
                         {_renderIcon(routeName, selectTab)}
                     </TouchableOpacity>
                 );
-                }}>
+                }}
+                
+                >
                 <CurvedBottomBar.Screen
-                    name="title1"
+                    name="Home"
                     position="left"
-                    component={() => <View style={{ backgroundColor: '#BFEFFF', flex: 1 }} />}
+                    component={()=><HomeStackScreen {...navigation} {...route}/>}
                 />
                 <CurvedBottomBar.Screen
-                    name="title2"
-                    component={() => <View style={{ backgroundColor: '#FFEBCD', flex: 1 }} />}
+                    name="Favourites"
+                    component={() => <FavouritesScreen  {...navigation} {...route}/>}
                     position="left"
                 />
                 <CurvedBottomBar.Screen
-                    name="title3"
-                    component={() => <View style={{ backgroundColor: '#BFEFFF', flex: 1 }} />}
+                    name="Stories"
+                    component={ () => <StoriesScreen  {...navigation} {...route}/>}
+                    position="right"
+                    
+                />
+                <CurvedBottomBar.Screen
+                    name="Categories"
+                    component={() => <CategoriesScreen  {...navigation} {...route}/>}
                     position="right"
                 />
-                <CurvedBottomBar.Screen
-                    name="title4"
-                    component={() => <View style={{ backgroundColor: '#FFEBCD', flex: 1 }} />}
+                {/* <CurvedBottomBar.Screen
+                    name="Story"
+                    component={() => <StoryScreen  {...navigation} {...route}/>}
                     position="right"
-                />
+                /> */}
             </CurvedBottomBar.Navigator>
         </View>
     );
@@ -106,7 +141,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
-        shadowColor: "#000",
+        shadowColor: "#58ceb2",
         shadowOffset: {
         width: 0,
         height: 1,
@@ -124,7 +159,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#E8E8E8',
         bottom: 18,
-        shadowColor: "#000",
+        shadowColor: "#58ceb2",
         shadowOffset: {
         width: 0,
         height: 1,
@@ -136,7 +171,7 @@ const styles = StyleSheet.create({
     imgCircle: {
         width: 30,
         height: 30,
-        tintColor: '#48CEF6'
+        tintColor: '#58ceb2'
     },
     img: {
         width: 30,

@@ -9,38 +9,70 @@ import {
 } from 'react-native';
 import  SearchbarCommon  from '../components/SearchBar';
 import  TopStories  from '../components/TopStories';
-import  BottomBar  from '../components/BottomBar';
+// import  BottomBar  from '../components/BottomBar';
 import { PageScrollView } from 'pagescrollview'
+import RootNavigator from '../rootNavigator';
+import CategorySlider from '../components/CategorySlider';
+import LatestStories from '../components/LatestStories';
+import RecommendedStories from '../components/RecommendedStories';
+import StoriesScreen  from './StoriesScreen';
+import StoryScreen  from './StoryScreen';
+import  AppMainHeader  from '../components/AppHeader';
+
+import { createStackNavigator } from '@react-navigation/stack';
 
 
 
-const HomeScreen = ({navigation, route}) => { 
-    //console.log('home');console.log(navigation);
-    return (
-        <View >
+export const HomeScreen = ({props})=> {
+    return(
+        <View style={{  flex: 1 }}>
             <PageScrollView backgroundColor='#ebf3f3' >
-            <SearchbarCommon />
-            <TopStories />
-            <Text>Welcome Home</Text>
-            
-            <TouchableOpacity 
-                             onPress={ () => navigation.navigate('Stories')}
-                             title="Stories"
-                        >
-                        <Text>Stories </Text>
-            </TouchableOpacity>
-            <TouchableOpacity 
-                             onPress={ () => navigation.navigate('Story')}
-                             title="Read Story"
-                             style={{paddingBottom:60}}
-                        >
-                        <Text>Read Story </Text>
-            </TouchableOpacity>
-            
+                <SearchbarCommon />
+                <TopStories />
+                <CategorySlider />
+                <LatestStories />
+                <RecommendedStories />
+                
             </PageScrollView>
-            <BottomBar />
         </View>
-
     );
 }
-export default HomeScreen;
+const HomeStackScreen = ({navigation, route}) => { 
+    const Stack = createStackNavigator();
+    return (
+            // <RootNavigator  theme={theme} initialScreen="HomeScreen"/>
+                <Stack.Navigator 
+                   
+                   initialRouteName="HomeScreen"
+                   
+                   screenOptions={({ route, navigation }) => ({
+                       header:  (props) => <AppMainHeader {...props}   {...route}  {...navigation}/>,
+                       // headerTitleAlign: 'center',
+                       // headerTitle: () => <SpreeLogo />,
+                       // headerRight: (props) => <MaterialIcons style={{
+                       //   marginHorizontal: 10,
+                       // }}
+                       // onPress={() => console.log(route, navigation)}
+                       // name="clear" size={28} color="black" />
+                     })}
+               >
+                   <Stack.Screen
+                       name="Homes"
+                       component={HomeScreen}
+                       options={{ headerTitle: 'Muthassikathakal' }}
+
+                   />
+                   <Stack.Screen
+                       name="Stories"
+                       component={StoriesScreen}
+                   />
+                   <Stack.Screen
+                       name="Story"
+                       component={StoryScreen}
+                   />
+                   
+                   
+               </Stack.Navigator>
+    );
+}
+export default HomeStackScreen;

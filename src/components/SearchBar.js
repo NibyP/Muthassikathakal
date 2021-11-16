@@ -51,16 +51,16 @@ const SearchbarCommon = ({ navigation, previous }) => {
         borderColor: colors.background,
         backgroundColor:'#fcfcfd',
         color:'#58ceb2',
-        fontSize:14,
+        fontSize:16,
         //height:25
         textAlignVertical:'center'
     },
     container:{
       alignItems:'center',
       marginHorizontal:20,
-      marginVertical:10,
+      marginVertical:20,
       borderRadius:50,
-      height:40
+      height:50
     },
     icon:{
       color:'#58ceb2',
