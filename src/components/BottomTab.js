@@ -37,11 +37,14 @@ export default function BottomTab() {
             tabBarInactiveTintColor: 'gray',
             tabBarStyle:{paddingVertical: 5,borderTopLeftRadius:15,borderTopRightRadius:15,backgroundColor:'white',position:'absolute',height:50},
             tabBarLabelStyle:{paddingBottom:3},
+            tabBarVisible: false,
+            tabBarHideOnKeyboard:true
+
         })}
       >
-        <Tab.Screen name="Home" component={HomeStackScreen} options={{headerShown: false}}/>
-        <Tab.Screen name="Favourites" component={FavouritesScreen} />
-        <Tab.Screen name="Stories" component={StoriesStackScreen} options={{headerShown: false}}/>
+        <Tab.Screen name="Home" component={HomeStackScreen} options={{headerShown: false,tabBarVisible: false}} />
+        {/* <Tab.Screen name="Favourites" component={FavouritesScreen} /> */}
+        <Tab.Screen name="Stories" component={StoriesStackScreen} options={{headerShown: false,tabBarVisible: false}} initialParams={{ category: '',top_story: '' }}/>
         <Tab.Screen name="Categories" component={CategoriesScreen} />
         {/* <Tab.Screen name="Story" component={StoryScreen} /> */}
       </Tab.Navigator>

@@ -18,7 +18,7 @@ import { toggleSideMenu,updateSideMenuState,onMenuItemSelected } from '../action
 
  const AppMainHeader = (props) => {
   //console.log('Props');
-  console.log(props.navigation.getState());
+  //console.log(props.navigation.getState());
   const { navigation } = props;
   const theme = useTheme();
   const { colors } = theme;//console.log('be happy niby');console.log(navigation.canGoBack);

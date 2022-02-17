@@ -1,20 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text } from 'react-native';
 import {  DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { changeLanguage } from './src/actions/language';
 import { updateStoryList,updateStoryDetails } from './src/actions/story';
-// import RootNavigator from './src/rootNavigator';
 import theme from './src/theme';
-// import SideMenu from 'react-native-side-menu';
-import MenuScreen from './src/components/SideMenu';
-// import { NavigationContainer } from '@react-navigation/native';
-import  BottomBar  from './src/components/BottomBar';
 import  BottomTab  from './src/components/BottomTab';
-
+import SplashScreen from 'react-native-splash-screen';
 
 const App = (props) => {
-  console.log(props.navigation);
+  //console.log(props.navigation);
+  useEffect(() => {
+    SplashScreen.hide();
+   }, []);
   return (
       <PaperProvider theme={theme}>
           {/* <RootNavigator  theme={theme}/> */}

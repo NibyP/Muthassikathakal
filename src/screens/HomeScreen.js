@@ -7,7 +7,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import  SearchbarCommon  from '../components/SearchBar';
+import  SearchBar  from '../components/SearchBar';
 import  TopStories  from '../components/TopStories';
 // import  BottomBar  from '../components/BottomBar';
 import { PageScrollView } from 'pagescrollview'
@@ -15,6 +15,7 @@ import RootNavigator from '../rootNavigator';
 import CategorySlider from '../components/CategorySlider';
 import LatestStories from '../components/LatestStories';
 import RecommendedStories from '../components/RecommendedStories';
+import SearchStories from '../components/SearchStories';
 import StoriesScreen  from './StoriesScreen';
 import StoryScreen  from './StoryScreen';
 import  AppMainHeader  from '../components/AppHeader';
@@ -24,10 +25,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 
 export const HomeScreen = ({props})=> {
+    
+
+
     return(
         <View style={{  flex: 1 }}>
             <PageScrollView backgroundColor='#ebf3f3' >
-                <SearchbarCommon />
+                
+                <SearchBar />
                 <TopStories />
                 <CategorySlider />
                 <LatestStories />
@@ -63,7 +68,7 @@ const HomeStackScreen = ({navigation, route}) => {
 
                    />
                    <Stack.Screen
-                       name="Stories"
+                       name="StoriesStack"
                        component={StoriesScreen}
                    />
                    <Stack.Screen

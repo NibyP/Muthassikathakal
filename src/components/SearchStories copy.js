@@ -1,7 +1,6 @@
 import React, { useState, Component, useEffect } from 'react';
 import { Appbar, withTheme, useTheme, Searchbar } from 'react-native-paper';
 import {
-  StatusBar,
   Text,
   TextInput,
   View,
@@ -9,35 +8,26 @@ import {
   StyleSheet,
   Dimensions,
   TouchableOpacity,
-  ActivityIndicator,
   FlatList,
-  Button,
   Image,
 } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { toggleSideMenu,updateSideMenuState,onMenuItemSelected } from '../actions/sidemenu';
-import * as RootNavigation from '../rootNavigationRef';
 import { useNavigation } from '@react-navigation/native';
-import AppMainHeader  from '../components/AppHeader';
-import { createStackNavigator } from '@react-navigation/stack';
-import StoryScreen  from './StoryScreen';
 
 const window = Dimensions.get('window');
 const deviceWidth = Dimensions.get('window').width;
 
 // { categoryID, storyListDynamic }
 
-const StoriesScreen = ({navigation, route}) => {
-  //const navigation = navigation;
-  //console.log(navigation);
-  console.log(route);
+const SearchStories = () => {
+  const navigation = useNavigation();//console.log(navigation);
   const [isLoading, setLoading] = useState(true);
   const [storyListDynamic, updatestoryList] = useState([]);
-  const { category, top_story,  } = route.params;
   
   useEffect(() => {
-    fetch('https://techieexplorer.com/demo/muthassikathakal/public/api/v1/stories?language=English&per_page=-1&category='+category+'&top_story='+top_story, {
+    fetch('https://techieexplorer.com/demo/muthassikathakal/public/api/v1/stories?language=English&per_page=4&search=', {
             method: 'GET',
             headers: {
               Accept: 'application/json',
@@ -53,28 +43,32 @@ const StoriesScreen = ({navigation, route}) => {
  
   return(
       <View style={styles.storyContainer} >
-          
-            {/* <AppMainHeader {...props}   {...props.route}  {...navigation}/> */}
-              {/* <View style={styles.titleContainer}>
-                    <Text  style={styles.titleText}>Latest Stories</Text>
-                    
-              </View> */}
               <FlatList
                   contentContainerStyle={styles.storySlider}
                   horizontal={false}
                   numColumns={2}
                   keyExtractor={(item, index) => index.toString()}
                   data={storyListDynamic}
-                  renderItem={({item}) => <View  style={styles.storyBox}>
-                  <TouchableOpacity style={styles.storyBtn} color="#8467fb"
-                      onPress={ () => navigation.navigate('Story', { storyslug:item.slug, storydetails:item })}
-                  >
-                      <Image
-                                          style={styles.storyImage}
-                                          source={{uri:item.story_image+"?time=" + new Date()}}
-                                        />
-                      <Text style={{color:'grey',textAlign:'center',fontSize:13,fontWeight:'bold',width:150}}>{item.story_title}</Text>
-                  </TouchableOpacity></View>}
+                  renderItem={({item}) => {
+                  // when no input, show all
+                  if (props.searchPhrase === "") {
+                    return <Text style={{color:'grey',textAlign:'center',fontSize:13,fontWeight:'bold',width:160}}>Start typing to search...</Text>;
+                  }
+                  // filter of the name
+                  if (item.name.toUpperCase().includes(props.searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
+                    <View  style={styles.storyBox}>
+                    <TouchableOpacity style={styles.storyBtn} color="#8467fb"
+                        onPress={ () => navigation.navigate('Story', { storyslug:item.slug, storydetails:item })}
+                    >
+                        <Image
+                                            style={styles.storyImage}
+                                            source={{uri:item.story_image+"?time=" + new Date()}}
+                                          />
+                        <Text style={{color:'grey',textAlign:'center',fontSize:13,fontWeight:'bold',width:160}}>{item.story_title}</Text>
+                    </TouchableOpacity></View>
+                  }
+                  }
+                  }
                >
 
 
@@ -83,39 +77,7 @@ const StoriesScreen = ({navigation, route}) => {
       </View>
   );
 }
-const StoriesStackScreen = ({navigation, route, props}) => { 
-  //console.log(route.params);
-  const Stack = createStackNavigator();
-  return (
-          // <RootNavigator  theme={theme} initialScreen="HomeScreen"/>
-              <Stack.Navigator 
-                 
-                 initialRouteName="StoriesScreen"
-                 
-                 screenOptions={({ route, navigation }) => ({
-                     header:  (props) => <AppMainHeader {...props}   {...route}  {...navigation}/>,
-                     
-                   })}
-             >
-                
-                 <Stack.Screen
-                     name="StoriesScreen"
-                     component={StoriesScreen}
-                     options={{ headerTitle: 'Stories' }}
-                     {...navigation}
-                     {...route}
-                     initialParams={{ category: route.params.category,top_story: route.params.top_story }}
-                     
-                 />
-                 <Stack.Screen
-                     name="Story"
-                     component={StoryScreen}
-                 />
-                 
-                 
-             </Stack.Navigator>
-  );
-}
+
 
 const mapStateToProps = (state) =>{
   //console.log(state);
@@ -134,16 +96,16 @@ const mapDispatchToProps = (dispatch) =>{
 export default  compose(
   connect(mapStateToProps,mapDispatchToProps),
   withTheme,
-)(StoriesScreen);
+)(SearchStories);
 
 const styles = StyleSheet.create({
   
   storyContainer:{
-    backgroundColor:'#ebf3f3',
+    //backgroundColor:'#a5c2fb',
     flexDirection:'column',
     flex:1,
     flexWrap:'wrap',
-    paddingBottom: 40,
+    paddingBottom: 10,
     alignItems:'center',
     justifyContent:'center'
   },
@@ -155,7 +117,7 @@ const styles = StyleSheet.create({
   storyBox:{
       marginLeft: 5,
       marginVertical:10,
-      
+
   },
   storyBtn:{
       paddingHorizontal:10,
@@ -175,7 +137,6 @@ const styles = StyleSheet.create({
       color:'gray',
       borderWidth: 2,
       borderColor:'#9658f4',
-     
   },
   titleContainer:{
     flexDirection:'row',

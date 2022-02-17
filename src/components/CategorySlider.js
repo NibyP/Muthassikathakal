@@ -17,13 +17,15 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { toggleSideMenu,updateSideMenuState,onMenuItemSelected } from '../actions/sidemenu';
 import * as RootNavigation from '../rootNavigationRef';
+import { useNavigation } from '@react-navigation/native';
 
 const window = Dimensions.get('window');
 
 const CategorySlider = (props, { changeCategory }) => {
+  const navigation = useNavigation();
   const [isLoading, setLoading] = useState(true);
   const [categoryListDynamic, setData] = useState([]);
-console.log(categoryListDynamic);
+//console.log(categoryListDynamic);
   useEffect(() => {
       fetch('https://techieexplorer.com/demo/muthassikathakal/public/api/v1/storycategories?language=English&per_page=-1', {
               method: 'GET',
@@ -50,7 +52,7 @@ console.log(categoryListDynamic);
                   renderItem={({item}) => <View style={{ paddingHorizontal:8 }}>
                     {/* onPress={() => changeCategory(item.id)} */}
                    
-                  <Button style={styles.buttonCateg} color="#58ceb2" title={item.category_name}  onPress={ () => navigation.navigate('Stories', { category:item.category_name })}></Button>
+                  <Button style={styles.buttonCateg} color="#58ceb2" title={item.category_name}  onPress={ () => navigation.navigate('StoriesStack', { category:item.id,top_story:'' })}></Button>
                   </View>}
                >
               </FlatList>
