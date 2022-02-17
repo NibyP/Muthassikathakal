@@ -19,6 +19,6 @@ Muthassikathal is a mobile app that allows anyone to read stories to kids in the
 <img src="https://nibyp.github.io/niby/assets/images/mk-2.png" width="20%">
 <img src="https://nibyp.github.io/niby/assets/images/mk-3.png" width="20%">
 # License
-<a href="https://github.com/NibyP/Muthassikathakal">MIT</a>
+<a href="https://github.com/NibyP/Muthassikathakal/blob/main/LICENSE">GNU</a>
 # Author
 Feel free to ask me questions on <a href="https://twitter.com/NibyP">Twitter</a> or <a href="https://github.com/NibyP/Muthassikathakal/issues">file an issue</a>.
